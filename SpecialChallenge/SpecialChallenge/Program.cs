@@ -60,6 +60,7 @@ namespace SpecialChallenge
                     repeat = false;
                 }
             }
+            Console.WriteLine("Goodbye!");
             Console.Read();
         }
     }
