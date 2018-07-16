@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecialChallenge
 {
@@ -53,15 +49,33 @@ namespace SpecialChallenge
 
                 Console.WriteLine(sum);
 
-                Console.Write("Continue? (y/n): ");
-                repeatSelection = Console.ReadLine().ToLower();
-                if(repeatSelection != "y" && repeatSelection != "yes")
-                {
-                    repeat = false;
-                }
+                repeat = RepeatCheck();
             }
             Console.WriteLine("Goodbye!");
             Console.Read();
+        }
+
+        static bool RepeatCheck()
+        {
+            Console.Write("Continue? (y/n): ");
+            try
+            {
+                String repeatSelection = Console.ReadLine().ToLower();
+                if (repeatSelection == "y" || repeatSelection == "yes")
+                {
+                    return true;
+                }
+                else if (repeatSelection == "n" || repeatSelection == "no")
+                {
+                    return false;
+                }
+                else throw new Exception();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid input.");
+                return RepeatCheck();
+            }
         }
     }
 }
