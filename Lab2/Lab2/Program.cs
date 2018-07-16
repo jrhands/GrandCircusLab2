@@ -9,17 +9,24 @@ namespace Lab2
             Console.WriteLine("Welcome to Grand Circus' Room Detail Generator!");
 
             bool repeat = true;
-            int feet, inches;
             double length, width, height;
 
             while (repeat)
             {
-                Console.Write("\nEnter Length: ");
-                length = double.Parse(Console.ReadLine());
-                Console.Write("Enter Width: ");
-                width = double.Parse(Console.ReadLine());
-                Console.Write("Enter Height: ");
-                height = double.Parse(Console.ReadLine());
+                try
+                {
+                    Console.Write("\nEnter Length: ");
+                    length = Math.Abs(double.Parse(Console.ReadLine()));
+                    Console.Write("Enter Width: ");
+                    width = Math.Abs(double.Parse(Console.ReadLine()));
+                    Console.Write("Enter Height: ");
+                    height = Math.Abs(double.Parse(Console.ReadLine()));
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input. Must be a number.");
+                    continue;
+                }
 
                 Console.WriteLine("\nArea: " + (length * width) + " square feet");
                 Console.WriteLine("Volume: " + (length * width * height) + " cubic feet");
@@ -38,14 +45,14 @@ namespace Lab2
             String repeatSelection;
 
             Console.Write("Continue? (y/n): ");
-            repeatSelection = Console.ReadLine();
-            if (repeatSelection == "N" || repeatSelection == "n")
+            repeatSelection = Console.ReadLine().ToLower();
+            if (repeatSelection == "n" || repeatSelection == "no")
             {
                 return false;
             }
-            else if (repeatSelection != "Y" && repeatSelection != "y")
+            else if (repeatSelection != "y" && repeatSelection != "yes")
             {
-                Console.WriteLine("Invalid selection. Input \"y\" for yes or \"n\" for no.");
+                Console.WriteLine("Invalid selection.");
                 return CheckRepeat();
             }
             else return true;
