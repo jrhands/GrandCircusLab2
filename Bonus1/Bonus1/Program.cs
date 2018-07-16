@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bonus1
 {
@@ -14,7 +10,7 @@ namespace Bonus1
 
             bool repeat = true;
             int numGrade;
-            String letterGrade, repeatSelection;
+            String letterGrade;
 
             while (repeat)
             {
@@ -22,9 +18,7 @@ namespace Bonus1
                 numGrade = int.Parse(Console.ReadLine());
                 letterGrade = GradeParse(numGrade);
                 Console.WriteLine(letterGrade);
-                Console.Write("\nContinue? (y/n): ");
-                repeatSelection = Console.ReadLine().ToLower();
-                if (repeatSelection != "y" && repeatSelection != "yes") { repeat = false; }
+                repeat = RepeatCheck();
             }
             Console.WriteLine("Goodbye!");
             Console.Read();
@@ -45,6 +39,31 @@ namespace Bonus1
             else if (numGrade >= 62) { return "D"; }
             else if (numGrade >= 60) { return "D-"; }
             else return "F";
+        }
+
+        static bool RepeatCheck()
+        {
+            String repeatSelection;
+
+            Console.Write("\nContinue? (y/n): ");
+            try
+            {
+                repeatSelection = Console.ReadLine().ToLower();
+                if (repeatSelection == "y" || repeatSelection == "yes")
+                {
+                    return true;
+                }
+                else if (repeatSelection == "n" || repeatSelection == "no")
+                {
+                    return false;
+                }
+                else throw new Exception();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid selection.");
+                return RepeatCheck();
+            }
         }
     }
 }
