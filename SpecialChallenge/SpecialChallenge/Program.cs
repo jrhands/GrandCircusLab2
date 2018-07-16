@@ -51,7 +51,7 @@ namespace SpecialChallenge
 
                 repeat = RepeatCheck();
             }
-            Console.WriteLine("Goodbye!");
+            Console.WriteLine("Goodbye.");
             Console.Read();
         }
 
